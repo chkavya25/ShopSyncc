@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ShopSync — Smart Shopping & Delivery</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <div id="loginPage" class="login-page">
+    <div class="login-visual">
+      <div class="brand login-brand"><span class="brand-icon">🛒</span><div><b>ShopSync</b><small>One place. One smart plan.</small></div></div>
+      <div class="login-copy">
+        <p class="eyebrow">UNIFIED SHOPPING MANAGEMENT</p>
+        <h1>Shop smarter.<br><span>Plan every delivery.</span></h1>
+        <p>Bring shopping, food orders, delivery windows, bills and reminders into one simple workspace.</p>
+        <div class="login-platforms"><span>Amazon</span><span>Flipkart</span><span>AJIO</span><span>Swiggy</span><span>Zomato</span></div>
+      </div>
+      <div class="login-feature"><b>✨ Smart Delivery Plan</b><span>See your orders on one timeline and organize your day around delivery windows.</span></div>
+    </div>
+    <div class="login-card-wrap">
+      <div class="login-card">
+        <div class="mobile-logo"><span class="brand-icon">🛒</span><b>ShopSync</b></div>
+        <p class="eyebrow">WELCOME BACK</p>
+        <h2>Sign in to ShopSync</h2>
+        <p class="muted">Manage your shopping journey from one dashboard.</p>
+        <form id="loginForm">
+          <label>Email address</label>
+          <input id="loginEmail" type="email" placeholder="you@example.com" required>
+          <label>Password</label>
+          <div class="password-field"><input id="loginPassword" type="password" placeholder="Enter your password" required><button type="button" onclick="togglePassword()">👁</button></div>
+          <div class="login-row"><label class="check"><input type="checkbox"> Remember me</label><a href="#" onclick="demoForgot(event)">Forgot password?</a></div>
+          <button class="primary full" type="submit">Sign In →</button>
+        </form>
+        <div class="or"><span>or</span></div>
+        <button class="social-btn" onclick="demoLogin()">Continue with Demo Account</button>
+        <p class="login-note">Prototype login: no real account or password is created.</p>
+      </div>
+    </div>
+  </div>
+
+  <div id="app" class="app-shell hidden">
+    <header class="topbar">
+      <div class="brand"><span class="brand-icon">🛒</span><div><b>ShopSync</b><small>One place. One smart plan.</small></div></div>
+      <div class="search"><span>⌕</span><input id="searchInput" placeholder="Search products, food, fashion, electronics..."></div>
+      <div class="top-actions"><button>🔔</button><button class="profile-mini" onclick="showSection('profile')">KS</button></div>
+    </header>
+
+    <div class="layout">
+      <aside class="sidebar">
+        <button class="nav active" data-section="dashboard">⌂ <span>Dashboard</span></button>
+        <button class="nav" data-section="shop">🛍 <span>Shop Across</span></button>
+        <button class="nav" data-section="orders">📦 <span>My Orders</span></button>
+        <button class="nav" data-section="delivery">⏱ <span>Delivery Plan</span></button>
+        <button class="nav" data-section="billing">🧾 <span>Billing Center</span></button>
+        <button class="nav" data-section="compare">⚖ <span>Price Compare</span></button>
+        <button class="nav" data-section="spending">📊 <span>Spending</span></button>
+        <button class="nav" data-section="reminders">🔔 <span>Reminders</span></button>
+        <button class="nav" data-section="profile">👤 <span>Profile</span></button>
+        <div class="side-title">CONNECTED PLATFORMS</div>
+        <div class="platform-list"><div>🅰️ Amazon <i>●</i></div><div>🟨 Flipkart <i>●</i></div><div>🔵 AJIO <i>●</i></div><div>🟠 Swiggy <i>●</i></div><div>🔴 Zomato <i>●</i></div></div>
+        <button class="logout-side" onclick="logout()">↪ Sign out</button>
+      </aside>
+
+      <main>
+        <section id="dashboard" class="section active-section">
+          <div class="hero"><div><p class="eyebrow">SMART MULTI-PLATFORM SHOPPING</p><h1>Everything you buy,<br><span>managed in one place.</span></h1><p>Shop across platforms, organize deliveries, compare final prices and keep bills and reminders together.</p><button class="primary" onclick="showSection('shop')">Start Shopping →</button></div><div class="hero-art"><div class="hero-orbit">🛍️</div><div>Amazon · Flipkart · AJIO<br>Swiggy · Zomato</div><small>One unified experience</small></div></div>
+          <div class="stats"><div><small>Active orders</small><b>5</b><span>Across 5 platforms</span></div><div><small>Total spending</small><b>₹8,450</b><span>This month</span></div><div><small>Next delivery</small><b>12:25 PM</b><span>Swiggy · Today</span></div><div><small>Pending bills</small><b>2</b><span>Need attention</span></div></div>
+          <div class="grid-two"><div class="card"><div class="card-head"><h2>My Orders</h2><button class="link" onclick="showSection('orders')">View all</button></div><div id="dashboardOrders"></div></div><div class="card"><div class="card-head"><h2>Smart Delivery Plan</h2><span class="tag">AI Suggested</span></div><p class="muted">Different platforms can have different delivery times. We organize them into one timeline.</p><div id="dashboardTimeline"></div></div></div>
+          <div class="quick-grid"><button onclick="showSection('billing')"><span>🧾</span><b>Open Billing</b><small>Invoices & tax summary</small></button><button onclick="showSection('compare')"><span>⚖️</span><b>Compare Prices</b><small>See final payable amount</small></button><button onclick="showSection('delivery')"><span>⏱️</span><b>Plan My Day</b><small>Delivery windows together</small></button><button onclick="showSection('reminders')"><span>🔔</span><b>View Reminders</b><small>Returns & payments</small></button></div>
+        </section>
+
+        <section id="shop" class="section"><div class="page-head"><div><p class="eyebrow">SHOP ACROSS PLATFORMS</p><h1>Find what you need</h1><p class="muted">Browse demo products from multiple platforms in one interface.</p></div><button class="cart-btn" onclick="openCart()">🛒 Cart <b id="cartCount">0</b></button></div><div class="chips"><button class="chip selected" onclick="filterProducts('All', this)">All</button><button class="chip" onclick="filterProducts('Women', this)">Women</button><button class="chip" onclick="filterProducts('Kids', this)">Kids</button><button class="chip" onclick="filterProducts('Girl', this)">Girl</button><button class="chip" onclick="filterProducts('Boy', this)">Boy</button><button class="chip" onclick="filterProducts('Men', this)">Men</button><button class="chip" onclick="filterProducts('Food', this)">Food</button><button class="chip" onclick="filterProducts('Fashion', this)">Fashion</button><button class="chip" onclick="filterProducts('Electronics', this)">Electronics</button><button class="chip" onclick="filterProducts('Accessories', this)">Accessories</button></div><div id="productGrid" class="products"></div></section>
+
+        <section id="orders" class="section"><div class="page-head"><div><p class="eyebrow">ORDER MANAGEMENT</p><h1>My Orders</h1></div></div><div id="ordersList" class="order-list"></div></section>
+
+        <section id="delivery" class="section"><div class="page-head"><div><p class="eyebrow">TIME MANAGEMENT</p><h1>Smart Delivery Plan</h1><p class="muted">One dashboard for fast food deliveries and multi-day shopping deliveries.</p></div></div><div class="delivery-banner"><b>Preferred delivery planning</b><span>We show available dates/windows; actual scheduling depends on the connected platform.</span></div><div class="delivery-scheduler card"><div class="card-head"><div><h2>How would you like your delivery?</h2><p class="muted">Choose one delivery window or keep separate delivery schedules.</p></div><span class="tag">Smart Plan</span></div><div class="delivery-modes"><label class="delivery-mode selected"><input type="radio" name="deliveryMode" value="one-time" checked onchange="toggleDeliveryMode()"><span><b>One-time delivery</b><small>Choose one date and time for your planned delivery.</small></span></label><label class="delivery-mode"><input type="radio" name="deliveryMode" value="multiple" onchange="toggleDeliveryMode()"><span><b>Multiple deliveries</b><small>Keep each platform's available delivery window.</small></span></label></div><div id="oneTimeFields" class="delivery-fields"><label><span>Delivery date</span><input type="date" id="deliveryDate"></label><label><span>Time slot</span><select id="deliveryTime"><option value="10:00 AM – 12:00 PM">10:00 AM – 12:00 PM</option><option value="12:00 PM – 2:00 PM">12:00 PM – 2:00 PM</option><option value="2:00 PM – 4:00 PM">2:00 PM – 4:00 PM</option><option value="4:00 PM – 6:00 PM">4:00 PM – 6:00 PM</option><option value="6:00 PM – 8:00 PM">6:00 PM – 8:00 PM</option><option value="8:00 PM – 10:00 PM">8:00 PM – 10:00 PM</option></select></label><button class="primary schedule-btn" onclick="scheduleOneTimeDelivery()">Schedule One-time Delivery</button></div><div id="multipleInfo" class="multiple-info hidden"><span>📦</span><div><b>Platform-specific scheduling</b><small>Orders will remain on their individual available delivery windows. ShopSync will organize them in one timeline.</small></div></div><div id="scheduledDelivery" class="scheduled-delivery hidden"></div></div><div class="day-planner"><div><small>Today</small><b>2 deliveries</b><span>12:25 PM · 6:00 PM</span></div><div><small>Tomorrow</small><b>1 delivery</b><span>11 AM – 2 PM</span></div><div><small>Oct 3–4</small><b>2 deliveries</b><span>Fashion + accessories</span></div></div><div id="fullTimeline" class="timeline"></div></section>
+
+        <section id="billing" class="section">
+          <div class="page-head"><div><p class="eyebrow">UNIFIED BILLING</p><h1>Billing Center</h1><p class="muted">One place to review invoices, payment status, taxes and purchase totals.</p></div><button class="secondary" onclick="printBilling()">🖨 Print Summary</button></div>
+          <div class="billing-summary"><div><small>Purchase total</small><b>₹8,450</b><span>5 orders</span></div><div><small>Discounts</small><b>₹650</b><span>Saved this month</span></div><div><small>Taxes shown</small><b>₹1,245</b><span>From sample invoices</span></div><div><small>Pending</small><b>₹1,099</b><span>1 payment</span></div></div>
+          <div class="billing-layout">
+            <div class="card table-card"><div class="card-head"><div><h2>Recent Invoices</h2><p class="muted">Track every purchase document</p></div><span class="tag">5 invoices</span></div><table><thead><tr><th>Invoice</th><th>Platform</th><th>Item</th><th>Date</th><th>Amount</th><th>Status</th><th>Action</th></tr></thead><tbody id="invoiceTable"></tbody></table></div>
+            <div class="card invoice-preview"><div class="card-head"><h2>Invoice Preview</h2><span class="paid-badge">PAID</span></div><div class="invoice-head"><div><b>ShopSync Invoice</b><small>Unified purchase record</small></div><span>#SS-260928</span></div><div class="invoice-lines"><div><span>Product subtotal</span><b>₹1,999</b></div><div><span>Platform delivery</span><b>₹49</b></div><div><span>Discount</span><b>-₹150</b></div><div><span>Tax / GST</span><b>₹341.64</b></div></div><div class="invoice-total"><span>Total paid</span><b>₹2,239.64</b></div><div class="tax-box"><b>Tax transparency</b><p>Tax is displayed from the underlying authorized invoice. ShopSync does not independently change the applicable tax rate.</p></div><button class="primary full" onclick="downloadInvoiceDemo()">⬇ Download Invoice</button></div>
+          </div>
+          <p class="note">Prototype billing uses sample data. In a production system, invoices, taxes and payment status must come from authorized platform/payment integrations.</p>
+        </section>
+
+        <section id="compare" class="section"><div class="page-head"><div><p class="eyebrow">PRICE COMPARISON</p><h1>Compare final prices</h1><p class="muted">Compare product price, delivery and discounts—not just the listed price.</p></div></div><div id="compareCards" class="compare-grid"></div></section>
+        <section id="spending" class="section"><div class="page-head"><div><p class="eyebrow">SPENDING MANAGEMENT</p><h1>Monthly Spending</h1></div></div><div class="spend-layout"><div class="card spend-chart"><div class="donut">₹8,450</div><h3>Total spending</h3><p class="muted">September 2026</p></div><div class="card"><h2>By platform</h2><div class="bars"><div><span>Amazon</span><i style="width:75%"></i><b>₹2,000</b></div><div><span>Flipkart</span><i style="width:92%"></i><b>₹2,500</b></div><div><span>AJIO</span><i style="width:66%"></i><b>₹1,800</b></div><div><span>Swiggy</span><i style="width:45%"></i><b>₹1,200</b></div><div><span>Zomato</span><i style="width:36%"></i><b>₹950</b></div></div></div></div></section>
+        <section id="reminders" class="section"><div class="page-head"><div><p class="eyebrow">TIME MANAGEMENT</p><h1>Reminders</h1></div></div><div class="reminders"><div class="reminder urgent">🔴 <div><b>Swiggy order arriving soon</b><small>Today · 12:25 PM</small></div><span>Live</span></div><div class="reminder">📦 <div><b>Amazon delivery expected</b><small>Oct 2 · 11 AM–2 PM</small></div><span>Tomorrow</span></div><div class="reminder warning">↩️ <div><b>AJIO return deadline</b><small>Oct 17 · 14 days left</small></div><span>14 days</span></div><div class="reminder">💳 <div><b>Flipkart payment due</b><small>Oct 4 · COD</small></div><span>3 days</span></div></div></section>
+        <section id="profile" class="section"><div class="page-head"><div><p class="eyebrow">ACCOUNT</p><h1>My Profile</h1><p class="muted">Manage your ShopSync demo account and connected platforms.</p></div><button class="back-btn" onclick="showSection('dashboard')">← Back</button></div><div class="profile-grid"><div class="card profile-card"><div class="avatar-large">KS</div><h2>Kavya</h2><p class="muted">kavya@example.com</p><span class="tag">Demo account</span></div><div class="card"><h2>Connected Platforms</h2><div class="connection"><span>🅰️ Amazon</span><b>Connected</b></div><div class="connection"><span>🟨 Flipkart</span><b>Connected</b></div><div class="connection"><span>🔵 AJIO</span><b>Connected</b></div><div class="connection"><span>🟠 Swiggy</span><b>Demo mode</b></div><div class="connection"><span>🔴 Zomato</span><b>Demo mode</b></div></div></div></section>
+      </main>
+    </div>
+  </div>
+
+  <div id="imageViewer" class="image-viewer" aria-hidden="true"><button class="viewer-back" type="button" onclick="closeImageViewer()">← Back</button><div class="viewer-content"><img id="viewerImage" src="" alt=""><div id="viewerTitle" class="viewer-title"></div></div></div>
+  <div id="cartModal" class="modal"><div class="modal-box"><button class="close" onclick="closeCart()">×</button><h2>Your Unified Cart</h2><div id="cartItems"></div><div class="cart-total"><span>Total</span><b id="cartTotal">₹0</b></div><button class="primary full" onclick="placeDemoOrder()">Place Demo Order</button><p class="note">Demo mode: this does not place a real external order.</p></div></div>
+  <div id="toast" class="toast"></div>
+  <script src="js/app.js"></script>
+</body>
+</html>
